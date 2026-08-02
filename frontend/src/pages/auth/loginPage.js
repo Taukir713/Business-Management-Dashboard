@@ -16,7 +16,7 @@ export default async function LoginPage() {
             <p class="text-secondary auth-subtitle mb-4">
                 Login to continue
             </p> 
-            ${loginForm()}
+            ${loginForm()} 
             <p class="mt-4 auth-subtitle text-center"> 
                 Don't have an account? 
                 <a href="#/signup">
@@ -26,13 +26,41 @@ export default async function LoginPage() {
         </div> 
     </div> 
     `;
+    const username = document.getElementById("username");
+    const password = document.getElementById("password");
+
+    const demoAccounts = {
+        admin: {
+            username: "admin",
+            password: "admin123"
+        },
+        manager: {
+            username: "manager",
+            password: "manager1"
+        },
+        viewer: {
+            username: "viewer",
+            password: "viewer12"
+        }
+    }
+    const demoAccountBtn = document.querySelectorAll(".demoAccountBtn"); 
+    demoAccountBtn.forEach((btn) => { 
+        btn.addEventListener("click", function () { 
+            const account = demoAccounts[this.dataset.account]
+            if(account) {
+                username.value = account.username;
+                password.value = account.password
+            }
+        })
+    }) 
+
     const form = document.getElementById("loginForm");
     form.addEventListener("submit", async function (e) {
         try{
             e.preventDefault();
             const username = document.getElementById("username").value;
             const password = document.getElementById("password").value;
-            const {valid, message} = validateLogin({username,password});
+            const {valid, message} = validateLogin({username, password});
             if(!valid) {
                 showToast(message, "error");
                 return;

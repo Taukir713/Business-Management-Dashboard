@@ -10,7 +10,7 @@ const mongoose = require("mongoose");
 const ExpressError = require("./utils/ExpressError");
 const URL = process.env.URL  
 const session = require("express-session");
-const {MongoStore ,createWebCryptoAdapter}   = require('connect-mongo');
+const {MongoStore ,createWebCryptoAdapter} = require('connect-mongo');
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./model/user");  
@@ -35,7 +35,7 @@ const dbUrl = process.env.ATLASDB_URL
 main(dbUrl).then(() => {
     console.log("connection successful");
 }).catch((err) => {
-    console.log(`mongoose error : ${err}`);
+    console.log(`mongoose error: ${err}`);
 })
 
 async function main(url) {
@@ -57,14 +57,14 @@ store.on("error" , (err) => {
 const sessionOption = {
     store,
     secret: process.env.SECRET,
-    resave:false ,
-    saveUninitialized:false ,
-    cookie : {
+    resave: false ,
+    saveUninitialized: false ,
+    cookie: {
         secure: process.env.NODE_ENV === "production",
         sameSite: "lax",
-        expires : Date.now() + 7 * 24 * 60 * 60 * 1000 ,
-        maxAge : 7 * 24 * 60 * 60 * 1000 , 
-        httpOnly : true
+        expires: Date.now() + 7 * 24 * 60 * 60 * 1000 ,
+        maxAge: 7 * 24 * 60 * 60 * 1000 , 
+        httpOnly: true
     } 
 } 
   
@@ -87,31 +87,31 @@ app.param("id", (req, res, next, id) => {
     next();
 })
 
-app.use("/company" , companyRouter);
-app.use("/company/:id/product" , productRouter);
-app.use("/company-entries" , companyEntryRouter);
+app.use("/company", companyRouter);
+app.use("/company/:id/product", productRouter);
+app.use("/company-entries", companyEntryRouter);
 
 app.use("/workers", workerRouter);
-app.use("/worker-entries" , workerEntryRouter);
+app.use("/worker-entries", workerEntryRouter);
 
-app.use("/assemblers" , assemblerRouter);
-app.use("/components" , componentRouter);
-app.use("/components/:id/type" , typeRouter);
-app.use("/assembler-entries" , assemblerEntryRouter);
+app.use("/assemblers", assemblerRouter);
+app.use("/components", componentRouter);
+app.use("/components/:id/type", typeRouter);
+app.use("/assembler-entries", assemblerEntryRouter);
 
-app.use("/company-dashboard/auth" , userRouter)
-app.use("/reports" , reportRouter)
+app.use("/company-dashboard/auth", userRouter)
+app.use("/reports", reportRouter)
 
 app.use((req,res,next) => {
     res.status(404).json({success:false, message:"Page Not Found"})
 })
 
-app.use((err, req,res,next) => {   
-    let {status=500 , message="Something Went Wrong"} = err;
+app.use((err, req, res, next) => {   
+    let {status=500, message="Something Went Wrong"} = err;
     res.status(status).json({success:false, message })
 })
 
-app.listen(port,() => {
+app.listen(port, () => {
     console.log(`listening on port ${port}`);
 })
 
