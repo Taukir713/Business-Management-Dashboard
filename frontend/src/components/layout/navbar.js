@@ -14,7 +14,7 @@ export default async function navbar() {
             </button>
 
             <h4 class="mb-0 fw-bold">
-                Company Dashboard
+                Business Management Dashboard
             </h4> 
         </div> 
 
