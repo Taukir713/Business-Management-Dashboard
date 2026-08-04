@@ -2,7 +2,7 @@
   "engines": {
     "node": "24.13.0"
   },
-  "name": "company-dashboard",
+  "name": "business-management-dashboard",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
