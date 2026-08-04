@@ -196,8 +196,8 @@ MongoDB Atlas
 # 🚀 Installation
 
 ```bash
-git clone https://github.com/Taukir713/company-dashboard.git
-cd company-dashboard
+git clone https://github.com/Taukir713/Business-Management-Dashboard
+cd Business-Management-Dashboard
 npm install
 ```
 
@@ -251,6 +251,7 @@ npm start
 **Taukir Rafique Shaikh**
 
 - GitHub: https://github.com/Taukir713
+- LinkedIn: https://www.linkedin.com/in/taukirshaikh713/
 - Gmail : shaikhtaukir713@gmail.com
 
 ---
