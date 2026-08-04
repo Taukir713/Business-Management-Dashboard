@@ -16,7 +16,7 @@ It replaces spreadsheet-based operations with a centralized system for managing 
 
 ## 🌐 Live Demo:
 
-🔗 https://company-dashboard-eua6.onrender.com/
+🔗 https://business-management-dashboard-02kh.onrender.com/
 
 **👤 Demo Credentials**
 
