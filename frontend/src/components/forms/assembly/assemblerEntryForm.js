@@ -99,17 +99,7 @@ export default function assemblerEntryForm(
                     value="${date || ""}"
                 > 
             </div>
-
-            <div class="col-lg-6 mb-4"> 
-                <label  class="form-check-label  fw-semibold" for="checkChecked" for="assemblerDate">
-                    Add Today's Date
-                </label>
-
-                <div class="form-check checkbox">
-                    <input class="form-check-input" type="checkbox" value="" id="checkChecked" checked>
-                </div>
-            </div>
-
+ 
             ${entry ? 
             `<div class="col-lg-6 mb-4"> 
                 <label class="form-label fw-semibold" for="retrieveStatus">
