@@ -1,25 +1,5 @@
 export default function loginForm() {
-    return `<form id="loginForm"> 
-        <div class="mb-4"> 
-            <small class="form-label">
-                Click any demo account to auto-fill login credentials.
-            </small>
-
-            <div> 
-                <button class="btn btn-outline-primary demoAccountBtn" data-account="admin"  type="button"> 
-                    Admin
-                </button> 
-
-                <button class="btn btn-outline-primary demoAccountBtn" data-account="manager"  type="button"> 
-                    Manager
-                </button> 
-
-                <button class="btn btn-outline-primary demoAccountBtn" data-account="viewer"  type="button"> 
-                    Viewer
-                </button> 
-            </div>
-        </div>
-
+    return `<form id="loginForm">  
         <div class="mb-4"> 
             <label class="form-label" for="username">
                 Username
