@@ -2,7 +2,7 @@ import layout , {initializeLayoutEvents}from "../../components/layout/layout.js"
 import {getCompanies} from "../../services/api/business/companyApi.js"
 import companyEntryForm from "../../components/forms/business/companyEntryForm.js"
 import {createCompanyEntry} from "../../services/api/business/companyEntryApi.js"
-import {showToast} from "../../utils/helper.js";
+import {showToast, formatDate} from "../../utils/helper.js";
 import {navigate} from "../../app/router.js" 
 import { validateCompanyEntry } from "../../validations/companyValidation.js";
 
@@ -37,6 +37,21 @@ export default async function addComponentEntryPage(params) {
                 `
             });
         })
+
+        const checkBox = document.getElementById("useTodaysDate");
+        const dateInput = document.getElementById("companyDate")
+        checkBox.addEventListener("change", function() {
+            if(checkBox.checked) { 
+                dateInput.value = formatDate(Date.now())
+            } 
+        }) 
+
+        dateInput.addEventListener("change", function() {
+            if(dateInput.value !== formatDate(Date.now())) { 
+                checkBox.checked = false
+            }
+        })
+
         const form = document.getElementById("companyEntryForm");
         form.addEventListener("submit", async function (e) {
             try{

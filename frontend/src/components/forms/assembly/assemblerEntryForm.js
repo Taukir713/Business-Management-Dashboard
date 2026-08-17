@@ -99,6 +99,14 @@ export default function assemblerEntryForm(
                     value="${date || ""}"
                 > 
             </div>
+
+            <div class="col-lg-6 mb-4"> 
+                <label class="form-label fw-semibold" for="useTodaysDate">
+                    Use Today's Date
+                </label>
+
+                <input type="checkbox"  name="useTodaysDate" id="useTodaysDate">
+            </div>
  
             ${entry ? 
             `<div class="col-lg-6 mb-4"> 

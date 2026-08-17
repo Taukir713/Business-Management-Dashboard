@@ -4,7 +4,7 @@ import {getAssemblers} from "../../services/api/assembly/assemblerApi.js";
 import {getComponents} from "../../services/api/assembly/componentsApi.js"; 
 import { createAssemblerEntry } from "../../services/api/assembly/assemblerEntryApi.js";
 import {navigate} from "../../app/router.js"
-import { showToast } from "../../utils/helper.js"; 
+import { formatDate, showToast } from "../../utils/helper.js"; 
 import {validateAssemblerEntry}  from "../../validations/assemblerValidation.js" 
 
 export default async function addAssemblerEntryPage(params) {
@@ -46,6 +46,20 @@ export default async function addAssemblerEntryPage(params) {
             }) 
         })
 
+        const checkBox = document.getElementById("useTodaysDate");
+        const dateInput = document.getElementById("assemblerDate")
+        checkBox.addEventListener("change", function() {
+            if(checkBox.checked) { 
+                dateInput.value = formatDate(Date.now())
+            } 
+        }) 
+
+        dateInput.addEventListener("change", function() {
+            if(dateInput.value !== formatDate(Date.now())) { 
+                checkBox.checked = false
+            }
+        })
+
         const form = document.getElementById("assemblerEntryForm");
         form.addEventListener("submit" , async function (e) {
             try {
@@ -56,7 +70,7 @@ export default async function addAssemblerEntryPage(params) {
                     typeId: document.getElementById("typeId").value,
                     qty: document.getElementById("assemblerQty").value, 
                     date: document.getElementById("assemblerDate").value
-                }      
+                }  
                 const {valid,message} = validateAssemblerEntry(data);
                 if(!valid) {
                     showToast(message, "error");

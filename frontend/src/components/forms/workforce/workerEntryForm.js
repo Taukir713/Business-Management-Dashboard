@@ -48,6 +48,15 @@ export default function workerEntryForm(  workers = [],entry = null ,date = "" )
                     value="${date || ""}"
                 > 
             </div> 
+
+            <div class="col-lg-6 mb-4"> 
+                <label class="form-label fw-semibold" for="useTodaysDate">
+                    Use Today's Date
+                </label>
+
+                <input type="checkbox"  name="useTodaysDate" id="useTodaysDate">
+            </div>
+            
         </div>
 
         <button class="btn btn-outline-primary"> 

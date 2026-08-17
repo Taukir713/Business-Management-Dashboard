@@ -3,7 +3,7 @@ import {getWorkers} from "../../services/api/workforce/workerApi.js"
 import {createWorkerEntry} from "../../services/api/workforce/workerEntryApi.js"
 import workerEntryForm from "../../components/forms/workforce/workerEntryForm.js"
 import {navigate} from "../../app/router.js";
-import {showToast} from "../../utils/helper.js"
+import {showToast, formatDate} from "../../utils/helper.js"
 import { validateWorkerEntry } from "../../validations/workerValidation.js";
 
 export default async function addWorkerEntryPage(params) {
@@ -25,6 +25,20 @@ export default async function addWorkerEntryPage(params) {
             ${workerEntryForm(workers)}
         `);
         await initializeLayoutEvents();
+
+        const checkBox = document.getElementById("useTodaysDate");
+        const dateInput = document.getElementById("workerDate")
+        checkBox.addEventListener("change", function() {
+            if(checkBox.checked) { 
+                dateInput.value = formatDate(Date.now())
+            } 
+        }) 
+
+        dateInput.addEventListener("change", function() {
+            if(dateInput.value !== formatDate(Date.now())) { 
+                checkBox.checked = false
+            }
+        })
         const form = document.getElementById("workerEntryForm");
         form.addEventListener("submit" , async function (e) {
             try {
