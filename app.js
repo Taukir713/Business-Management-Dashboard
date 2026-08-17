@@ -30,7 +30,7 @@ const assemblerEntryRouter = require("./routes/assemblerEntry");
 const userRouter = require("./routes/user");  
 const reportRouter = require("./routes/report");
 
-const dbUrl = process.env.URL
+const dbUrl = process.env.ATLASDB_URL
 
 main(dbUrl).then(() => {
     console.log("connection successful");
