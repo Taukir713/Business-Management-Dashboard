@@ -1,7 +1,7 @@
 import layout , {initializeLayoutEvents} from "../../components/layout/layout.js";
 import { getReports } from "../../services/api/report/reportApi.js";
 import dataTable from "../../components/ui/dataTable.js";
-import { emptyState, showToast } from "../../utils/helper.js";
+import { emptyState, showToast, formatMonthAndYear } from "../../utils/helper.js";
 import reportForm from "../../components/forms/report/reportForm.js";
 import { validateReport } from "../../validations/reportValidation.js";
 
@@ -63,11 +63,27 @@ export default async function reportsPage(params) {
             )}
         `);
         await initializeLayoutEvents()
+
+        const currentMonthAndYearCheckbox = document.getElementById("useCurrentMonthAndYear");
+        const reportMonthAndYear = document.getElementById("reportMonthAndYear");
+
+        currentMonthAndYearCheckbox.addEventListener("change", function () {
+            if (this.checked) { 
+                reportMonthAndYear.value = formatMonthAndYear(new Date())
+            }
+        });
+
+        reportMonthAndYear.addEventListener("change", function () {  
+            if(reportMonthAndYear.value !== formatMonthAndYear(new Date()) ) {
+                currentMonthAndYearCheckbox.checked = false;
+            }  
+        });
+
         const form = document.getElementById("reportForm");
         form.addEventListener("submit" , async function (e) {
             e.preventDefault()
             try {
-                const date = document.getElementById("reportDate").value;
+                const date = document.getElementById("reportMonthAndYear").value;
                 const type = document.getElementById("reportType").value; 
                 const {valid,message} = validateReport({date,type})
                 if(!valid) {
@@ -81,7 +97,7 @@ export default async function reportsPage(params) {
                 showToast(err.response?.data?.message, "error")
             } 
         })
-        const clearBtn = document.getElementById("clearBtn");
+        const clearBtn = document.getElementById("clearButton");
         if(clearBtn) {
             clearBtn.addEventListener("click" , function() { 
                 window.location.hash = `#/reports`  

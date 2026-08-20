@@ -27,6 +27,9 @@ export function formatDate(date) {
     return new Date(date).toISOString().split("T")[0]
 }
 
+export function formatMonthAndYear(date) {
+    return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0") }`
+}
 export function isValidObjectId(id) {
   return /^[0-9a-fA-F]{24}$/.test(id);
 }

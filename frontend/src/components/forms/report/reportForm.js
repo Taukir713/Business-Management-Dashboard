@@ -1,18 +1,34 @@
-export default function reportForm(types=[],date,selectedType="") {
+export default function reportForm(reportTypes=[], reportMonthAndDate, selectedReportType="") {
     return `
         <form id="reportForm" class="form-card mb-3"> 
         <div class="row">  
             <div class="col-lg-6 mb-4"> 
-                <label class="form-label fw-semibold" for="reportDate">
-                    Select Date
+                <label class="form-label fw-semibold" for="reportMonthAndYear">
+                    Select Month & Year
                 </label>
 
-                <input
-                    type="month"
-                    class="form-control"
-                    id="reportDate" 
-                    value="${date}"
-                > 
+               <div class="input-group">
+                    <input 
+                        type="month" 
+                        class="form-control" 
+                        id="reportMonthAndYear"  
+                        value="${reportMonthAndDate}" 
+                    >
+
+                    <div class="input-group-text mt-1">
+                        <input 
+                            class="form-check-input mt-0 me-2" 
+                            type="checkbox" 
+                            id="useCurrentMonthAndYear"
+                        >
+                        <label 
+                            class="form-label mb-0" 
+                            for="useCurrentMonthAndYear"
+                        >
+                            Use Current Month & Year
+                        </label>
+                    </div>
+                </div>
             </div>
 
             <div class="col-lg-6 mb-4"> 
@@ -22,11 +38,11 @@ export default function reportForm(types=[],date,selectedType="") {
 
                 <select class="form-select" id="reportType" > 
                     <option   value="" selected disabled >
-                        Select field
+                        Select Report Type
                     </option>  
-                    ${types.map((type) => `
-                         <option   value="${type}" ${type === selectedType ? "selected" : ""}    > 
-                            ${type }
+                    ${reportTypes.map((reportType) => `
+                         <option   value="${reportType}" ${reportType === selectedReportType ? "selected" : ""}    > 
+                            ${reportType }
                         </option>
                     `)}
                 </select> 
@@ -37,8 +53,8 @@ export default function reportForm(types=[],date,selectedType="") {
             Generate Report
         </button> 
 
-        ${selectedType ? 
-            `<button class="btn btn-outline-warning" type="button" id="clearBtn"> 
+        ${selectedReportType ? 
+            `<button class="btn btn-outline-warning" type="button" id="clearButton"> 
                 Clear
             </button>`
             : "" }
