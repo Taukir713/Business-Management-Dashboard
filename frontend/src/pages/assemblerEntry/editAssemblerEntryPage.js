@@ -43,6 +43,20 @@ export default async function editAssemblerEntryPage(id,oldUrl) {
             }) 
         })
 
+        const checkBox = document.getElementById("useTodaysDate");
+        const dateInput = document.getElementById("assemblerDate")
+        checkBox.addEventListener("change", function() {
+            if(checkBox.checked) { 
+                dateInput.value = formatDate(Date.now())
+            } 
+        }) 
+
+        dateInput.addEventListener("change", function() {
+            if(dateInput.value !== formatDate(Date.now())) { 
+                checkBox.checked = false
+            }
+        })
+
         const form = document.getElementById("assemblerEntryForm");
         form.addEventListener("submit", async function (e) {
             try {

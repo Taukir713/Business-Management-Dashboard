@@ -29,6 +29,21 @@ export default async function editWorkerEntryPage(id,oldUrl) {
             ${workerEntryForm(workers , entry ,date)}
         `);
         await initializeLayoutEvents();
+
+        const checkBox = document.getElementById("useTodaysDate");
+        const dateInput = document.getElementById("workerDate")
+        checkBox.addEventListener("change", function() {
+            if(checkBox.checked) { 
+                dateInput.value = formatDate(Date.now())
+            } 
+        }) 
+
+        dateInput.addEventListener("change", function() {
+            if(dateInput.value !== formatDate(Date.now())) { 
+                checkBox.checked = false
+            }
+        })
+        
         const form = document.getElementById("workerEntryForm");
         form.addEventListener("submit", async function (e) {
             try {
