@@ -55,7 +55,7 @@ export default async function addWorkerEntryPage(params) {
                 }
                 const newWorkerEntry = await createWorkerEntry(data)
                 if(newWorkerEntry) {
-                    navigate("#/worker-entries" , true)
+                    // navigate("#/worker-entries" , true)
                     showToast(newWorkerEntry.message);
                 }
             }catch(err) {

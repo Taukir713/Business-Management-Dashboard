@@ -126,7 +126,7 @@ export default async function workerEntryListPage(params) {
         searchInput.addEventListener('input', function () {
             if (this.value === "") { 
                 searchInput.value = ""; 
-                window.location.hash = `#/company-entries?page=1`;
+                window.location.hash = `#/worker-entries?page=1`;
             }
         });
     }catch(err) { 
